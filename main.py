@@ -29,6 +29,7 @@ y = randint(0, yBox)
 start = (x,y)
 bob.penup()
 bob.goto(x,y)
+ 
 
 
 bob.fillcolor("white")
