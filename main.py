@@ -34,7 +34,6 @@ bob.goto(x,y)
 
 bob.fillcolor("white")
 bob.begin_fill()
-bob.begin_poly()
 while bob.pos()[0] < widthpanel - xBox:
   xtemp = x
   ytemp = y
@@ -69,9 +68,8 @@ while bob.pos()[1] > 1.5*yBox:
 
 linesegments.append(line(x,y,*start))
 bob.goto(start)
-bob.end_poly()
 bob.end_fill()
-walls = bob.get_poly()
+
 
 
 p = (widthpanel//2,height//2)
@@ -84,9 +82,9 @@ s.bgcolor("black")
 bob.goto(start)
 bob.fillcolor("white")
 bob.begin_fill()
-for point in walls:
-  bob.goto(point)
-bob.end_fill()
 for line in linesegments:
+  bob.goto(line.xstart, line.ystart)
   first.intersectsWithLinesegment(line)
+bob.end_fill()
 s.update()
+s.mainloop()

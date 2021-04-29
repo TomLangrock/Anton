@@ -19,6 +19,8 @@ class ray:
         self.r = r
         self.turtle = turtle
 
+    def __repr__(self):
+        return str(self.p) + " " + str(self.r)
     
     def intersectsWithLinesegment(self, linesegment):
         num = self.r[1]*(linesegment.xstart - self.p[0])+self.r[0]*(self.p[1]-linesegment.ystart) 
@@ -26,7 +28,8 @@ class ray:
         if denom != 0:
             v = num/denom
         else:
-            v = None
+            v = 0.5
+            print(self, linesegment)
 
         if 0 < v < 1:
             self.turtle.goto(linesegment.xstart + v*(linesegment.xstop-linesegment.xstart), linesegment.ystart + v*(linesegment.ystop-linesegment.ystart) )
