@@ -87,4 +87,5 @@ for line in linesegments:
   first.intersectsWithLinesegment(line)
 bob.end_fill()
 s.update()
+
 s.mainloop()
