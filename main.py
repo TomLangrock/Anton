@@ -2,13 +2,15 @@ import turtle as t
 from tmaths import line, ray
 from random import randint
 
+
 linesegments = []
 
 bob = t.Turtle()
+hildegard = t.Turtle()
 s = bob.getscreen()
-s.tracer(4000,0)
+s.tracer(40000,0)
 s.bgcolor("black")
-
+bob.speed(0)
 width = 1000
 widthpanel = width//2
 height = 400
@@ -72,20 +74,28 @@ bob.end_fill()
 
 
 
-p = (widthpanel//2,height//2)
-r = (1,0)
-first = ray(p, r, bob)
+p = [widthpanel//2,height//2]
+r = [1,0]
+firstRay = ray(p, r, bob)
 
+s.onclick(hildegard.goto)
 
-s.clear()
-s.bgcolor("black")
-bob.goto(start)
-bob.fillcolor("white")
-bob.begin_fill()
-for line in linesegments:
-  bob.goto(line.xstart, line.ystart)
-  first.intersectsWithLinesegment(line)
-bob.end_fill()
-s.update()
+s.listen()
+
+def step():
+  bob.clear()
+  hildegard.clear()
+  firstRay.updateRayDirection(*hildegard.pos())
+  s.bgcolor("black")
+  bob.goto(start)
+  bob.fillcolor("white")
+  bob.begin_fill()
+  for line in linesegments:
+    bob.goto(line.xstart, line.ystart)
+    firstRay.intersectsWithLinesegment(line)
+  bob.end_fill()
+  s.update()
+  s.ontimer(step, t=50)
+step()
 
 s.mainloop()

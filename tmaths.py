@@ -29,9 +29,12 @@ class ray:
             v = num/denom
         else:
             v = 0.5
-            print(self, linesegment)
 
         if 0 < v < 1:
             self.turtle.goto(linesegment.xstart + v*(linesegment.xstop-linesegment.xstart), linesegment.ystart + v*(linesegment.ystop-linesegment.ystart) )
             self.turtle.pencolor("red")
             self.turtle.dot()
+    
+    def updateRayDirection(self, x, y):
+        self.r[0] = x - self.p[0]
+        self.r[1] = y - self.p[1]
